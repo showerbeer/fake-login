@@ -1,7 +1,15 @@
-FROM node:latest
+FROM node:12
 
-WORKDIR /src/
+WORKDIR /usr/app
 
-EXPOSE 80
+COPY package.json ./
 
-CMD npm start
+RUN npm install
+
+RUN ls
+
+COPY . .
+
+EXPOSE 5090
+
+CMD ["node", "src/index.js"]
