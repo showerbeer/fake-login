@@ -20,10 +20,10 @@ class AttemptsController {
     const validation = validator.validate(body);
     if (validation.error) {
       const message = validation.error.details.map(i => i.message).join(',');
-      res.status(400).send(message);
+      res.status(400).send({error: message});
     } else {
       const result = await this.attemptsService.insertAttempt(body);
-      res.status(302).send({
+      res.status(200).send({
         url: 'http://lassen.dev/attempts'
       });
     }

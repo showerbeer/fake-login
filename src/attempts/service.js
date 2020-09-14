@@ -14,6 +14,7 @@ class AttemptsService {
     `;
 
     const result = await connection.execute(query, [skip, pageSize]);
+    connection.release();
     return result;
   }
 
@@ -34,6 +35,7 @@ class AttemptsService {
     `;
 
     const result = await connection.execute(insertQuery, [username, password]);
+    connection.release();
     return result;
   }
 }

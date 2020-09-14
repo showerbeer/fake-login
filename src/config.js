@@ -4,7 +4,7 @@ const server = {
     port: 5090,
     pageSize: 100,
     logger: {
-        format: "tiny"
+        format: `:remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length]`
     }
 };
 
