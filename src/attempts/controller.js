@@ -23,7 +23,9 @@ class AttemptsController {
       res.status(400).send(message);
     } else {
       const result = await this.attemptsService.insertAttempt(body);
-      res.status(200).send(`Nice try guy`);
+      res.status(302).send({
+        url: 'http://lassen.dev/attempts'
+      });
     }
   }
 }
