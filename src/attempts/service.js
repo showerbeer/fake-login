@@ -10,7 +10,7 @@ class AttemptsService {
       SELECT *
       FROM attempts
       ORDER BY lastModified DESC
-      LIMIT ?,?
+      LIMIT ? , ?
     `;
 
     const result = await connection.execute(query, [skip, pageSize]);
@@ -18,7 +18,11 @@ class AttemptsService {
   }
 
   async insertAttempt(newAttempt) {
-    const { username, password } = newAttempt;
+    const {
+      username,
+      password
+    } = newAttempt;
+
     const connection = await this.database.getConnection();
 
     const insertQuery = `
@@ -26,7 +30,7 @@ class AttemptsService {
       VALUES (?, ?)
       ON DUPLICATE KEY UPDATE
         lastModified=current_timestamp(),
-        attempts=attempts+1;
+        attempts = attempts + 1;
     `;
 
     const result = await connection.execute(insertQuery, [username, password]);

@@ -16,6 +16,6 @@ module.exports.init = (server, configs, database) => {
   const service = new AttemptsService(database);
   const controller = new AttemptsController(configs, service);
 
-  server.get('/login/attempts', asyncHandler(controller.getAttempts.bind(controller)));
-  server.post('/login', asyncHandler(controller.createAttempt.bind(controller)));
+  server.get('/attempts', asyncHandler(controller.getAttempts.bind(controller)));
+  server.post('/', asyncHandler(controller.createAttempt.bind(controller)));
 }
